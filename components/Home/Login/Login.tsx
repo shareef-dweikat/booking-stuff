@@ -1,11 +1,11 @@
 import React, { Component, useState } from "react";
 import {
-    Container,Content, LoginInput, Label,
+    Container, Content, LoginInput, Label,
     Logo, SubmitBtn, SubmitBtnText,
     SubmitBtnContainer, Arrow,
 } from "./styled";
 import auth from '@react-native-firebase/auth';
-import { Text, ScrollView } from "react-native";
+import { Text, ScrollView, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import KeyboardSpacer from "../KeyboardSpacer";
 // import { Label } from "./styled";
@@ -14,25 +14,30 @@ import KeyboardSpacer from "../KeyboardSpacer";
 // import {useSelector} from 'react-redux'
 export default () => {
     const { control, handleSubmit, errors } = useForm();
-    const onSubmit = data => console.log(data);
+    // const onSubmit = data => console.log(data);
     const [scrollEnabled, setScrollEnabled] = useState(false);
 
-    const handleSignIn = () => {
+    const onSubmit = (data) => {
+        console.log(data, "dataaaa")
         auth()
-            .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+            .createUserWithEmailAndPassword(data.email, data.password)
             .then(() => {
                 console.log('User account created & signed in!');
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
-                    console.log('That email address is already in use!');
+                  alert('That email address is already in use!')
                 }
 
                 if (error.code === 'auth/invalid-email') {
-                    console.log('That email address is invalid!');
+                    alert('That email address is invalid!')
                 }
 
-                console.error(error);
+                if (error.code === 'auth/weak-password') {
+                    alert('Your password is weak')
+                }
+                console.log('something went wrong');
+
             });
     }
     // const x  = useSelector((state)=>state.auth)
@@ -70,7 +75,7 @@ export default () => {
                                 placeholder="Enter Your password"
                             />
                         )}
-                        name="email"
+                        name="password"
                         rules={{ required: true }}
                         defaultValue=""
                     />
