@@ -2,7 +2,6 @@ import { AnyAction } from 'redux';
 
 const initialState = {
   // user: {},
-  // existingNumber: null,
   // isLoading: false,
   // token: null,
   // error: null

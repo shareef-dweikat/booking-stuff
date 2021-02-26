@@ -7,38 +7,14 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './components/Home/Home'
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-const Stack = createStackNavigator();
+import store from './store'
+import { Provider } from 'react-redux'
+import Navigation from './config/navigation'
 
-const App = () => {
+export default () => {
   return (
-    <>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </>
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
   );
 };
-
-
-
-export default App;
