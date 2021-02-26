@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -13,9 +13,7 @@ const AppDrawerScreen = () => (
     <AppDrawer.Screen
       name="HomeStack"
       component={HomeStackScreen}
-    //   options={{
-    //     gestureEnabled: false,
-    //   }}
+
     />
   </AppDrawer.Navigator>
 );
@@ -23,30 +21,24 @@ const AppDrawerScreen = () => (
 
 const HomeStack = createStackNavigator();
 const HomeStackScreen = () => (
-    <HomeStack.Navigator>
-        <HomeStack.Screen name="Home" component={HomeScreen} />
-    </HomeStack.Navigator>
+  <HomeStack.Navigator>
+    <HomeStack.Screen name="Home" component={HomeScreen} />
+  </HomeStack.Navigator>
 );
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
-    <AuthStack.Navigator>
-        <AuthStack.Screen name="Login" component={Login} />
-    </AuthStack.Navigator>
+  <AuthStack.Navigator >
+    <AuthStack.Screen
+      options={{
+        header: () => null
+      }}
+      name="Login" component={Login}
+    />
+  </AuthStack.Navigator>
 );
 
 export default () => {
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [user, setUser] = useState(null);
-
-    // React.useEffect(() => {
-    //   setTimeout(() => {
-    //     setIsLoading(false);
-    //     setUser({});
-    //   }, 500);
-    // }, []);
-
-     // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
@@ -59,17 +51,17 @@ export default () => {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; 
+    return subscriber;
   }, []);
-    return (
-        <NavigationContainer>
-            {initializing ? (
-                <AuthLoading />
-            ) : user ? (
-                <AppDrawerScreen />
-            ) : (
-                        <AuthStackScreen />
-                    )}
-        </NavigationContainer>
-    );
+  return (
+    <NavigationContainer>
+      {initializing ? (
+        <AuthLoading />
+      ) : user ? (
+        <AppDrawerScreen />
+      ) : (
+            <AuthStackScreen />
+          )}
+    </NavigationContainer>
+  );
 };
