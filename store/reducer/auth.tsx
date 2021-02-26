@@ -1,4 +1,9 @@
 import { AnyAction } from 'redux';
+import {
+  LOG_IN_SUCCESS,
+  LOG_OUT
+} from '../types';
+import auth from '@react-native-firebase/auth';
 
 const initialState = {
   // user: {},
@@ -9,8 +14,12 @@ const initialState = {
 
 export default (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case 'LOGOUT':
-      // AsyncStorage.clear();
+    case LOG_IN_SUCCESS:
+      return {
+        ...initialState,
+      };
+    case LOG_OUT:
+      auth().signOut()
       return {
         ...initialState,
       };

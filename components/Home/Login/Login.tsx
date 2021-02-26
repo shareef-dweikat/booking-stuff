@@ -2,43 +2,25 @@ import React, { Component, useState } from "react";
 import {
     Container, Content, LoginInput, Label,
     Logo, SubmitBtn, SubmitBtnText,
-    SubmitBtnContainer, Arrow,
+    SubmitBtnContainer, Arrow, ErrorMsg,
 } from "./styled";
-import auth from '@react-native-firebase/auth';
+import { useDispatch } from 'react-redux'
 import { Text, ScrollView, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import KeyboardSpacer from "../KeyboardSpacer";
-// import { Label } from "./styled";
-// import Colors from "../../constants/Colors";
-// import { View } from 'react-native'
-// import {useSelector} from 'react-redux'
+import { login } from '../../../store/action/auth'
 export default () => {
-    const { control, handleSubmit, errors } = useForm();
+    const { control, handleSubmit, errors, getValues, register } = useForm({
+        mode: "onChange"
+
+    });
+    console.log(getValues()?.email?.length, "adassdd")
     // const onSubmit = data => console.log(data);
     const [scrollEnabled, setScrollEnabled] = useState(false);
-
+    const dispatch = useDispatch()
     const onSubmit = (data) => {
-        console.log(data, "dataaaa")
-        auth()
-            .createUserWithEmailAndPassword(data.email, data.password)
-            .then(() => {
-                console.log('User account created & signed in!');
-            })
-            .catch(error => {
-                if (error.code === 'auth/email-already-in-use') {
-                  alert('That email address is already in use!')
-                }
-
-                if (error.code === 'auth/invalid-email') {
-                    alert('That email address is invalid!')
-                }
-
-                if (error.code === 'auth/weak-password') {
-                    alert('Your password is weak')
-                }
-                console.log('something went wrong');
-
-            });
+        dispatch(login(data.email, data.password))
+        
     }
     // const x  = useSelector((state)=>state.auth)
     // console.log(x)
@@ -63,7 +45,7 @@ export default () => {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.firstName && <Text>This is required.</Text>}
+                    {errors.email && <ErrorMsg>This is required.</ErrorMsg>}
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
@@ -79,18 +61,20 @@ export default () => {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {errors.firstName && <Text>This is required.</Text>}
+                    {errors.password && <ErrorMsg>This is required.</ErrorMsg>}
                 </Content>
                 <KeyboardSpacer onToggle={(visible) => setScrollEnabled(visible)} />
             </ScrollView>
-            <SubmitBtn onPress={handleSubmit(onSubmit)}>
-                <SubmitBtnContainer >
-                    <SubmitBtnText>
-                        Next
+            {getValues()?.email?.length > 0 &&
+                <SubmitBtn onPress={handleSubmit(onSubmit)}>
+                    <SubmitBtnContainer >
+                        <SubmitBtnText>
+                            Next
                 </SubmitBtnText>
-                    <Arrow> --> </Arrow>
-                </SubmitBtnContainer>
-            </SubmitBtn>
+                        <Arrow> --> </Arrow>
+                    </SubmitBtnContainer>
+                </SubmitBtn>
+            }
         </Container>
     )
 }

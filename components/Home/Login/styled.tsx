@@ -46,7 +46,11 @@ export const SubmitBtnText = styled.Text`
  font-size: 15px;
  flex: 0.5
 `
-
+export const ErrorMsg = styled.Text`
+ color: ${Colors.red};
+ font-size:10px;
+ alignSelf: flex-start
+`
 export const SubmitBtnContainer = styled.View`
   flex-direction: row;
   justify-content: space-between
