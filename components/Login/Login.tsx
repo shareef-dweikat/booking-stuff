@@ -8,18 +8,17 @@ import { useDispatch } from 'react-redux'
 import { Text, ScrollView, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import KeyboardSpacer from "../KeyboardSpacer";
-import { login } from '../../../store/action/auth'
+import { signUp } from '../../store/action/auth'
 export default () => {
     const { control, handleSubmit, errors, getValues, register } = useForm({
         mode: "onChange"
 
     });
-    console.log(getValues()?.email?.length, "adassdd")
     // const onSubmit = data => console.log(data);
     const [scrollEnabled, setScrollEnabled] = useState(false);
     const dispatch = useDispatch()
     const onSubmit = (data) => {
-        dispatch(login(data.email, data.password))
+        dispatch(signUp(data.email, data.password))
         
     }
     // const x  = useSelector((state)=>state.auth)

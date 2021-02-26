@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 import { Text } from 'react-native'
-import Colors from '../../constants/Colors'
+import Colors from '../constants/Colors'
 
 export const Label = styled.Text`
    color: ${Colors.black};

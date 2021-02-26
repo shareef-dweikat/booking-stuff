@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import HomeScreen from '../components/Home/Home';
-import Login from '../components/Home/Login/Login';
-import AuthLoading from '../components/Home/AuthLoading/AuthLoading';
+import HomeScreen from '../components/Home';
+import Login from '../components/Login/Login';
+import AuthLoading from '../components/Login/Login';
 import auth from '@react-native-firebase/auth';
+import { View } from 'react-native';
 
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
-  <AppDrawer.Navigator drawerPosition="right">
+  <AppDrawer.Navigator
+    drawerPosition="right">
     <AppDrawer.Screen
       name="HomeStack"
       component={HomeStackScreen}
@@ -22,7 +24,11 @@ const AppDrawerScreen = () => (
 const HomeStack = createStackNavigator();
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
-    <HomeStack.Screen name="Home" component={HomeScreen} />
+    <HomeStack.Screen
+      options={{
+        header: () => null
+      }}
+      name="Home" component={HomeScreen} />
   </HomeStack.Navigator>
 );
 
@@ -44,7 +50,7 @@ export default () => {
 
   // Handle user state changes
   function onAuthStateChanged(user) {
-    // console.log(user, "usssss")
+    console.log(user, "usssss")
     setUser(user);
     if (initializing) setInitializing(false);
   }

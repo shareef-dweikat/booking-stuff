@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 import { Text, TextInput, Dimensions, TouchableOpacity } from 'react-native'
-import Colors from '../../../constants/Colors'
+import Colors from '../../constants/Colors'
 
 const Height = Dimensions.get('window').height
 export const Label = styled.Text`
