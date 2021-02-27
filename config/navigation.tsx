@@ -6,21 +6,25 @@ import HomeScreen from '../components/Home/Home';
 import Login from '../components/Login/Login';
 import AuthLoading from '../components/Login/Login';
 import auth from '@react-native-firebase/auth';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import DatePicker from '../components/DatePicker/DatePicker';
 import TimePicker from '../components/TimePicker/TimePicker';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchDate } from '../store/action/date';
+import { Label, Container, Content } from './styled'
+
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
   <AppDrawer.Navigator
+    drawerContent={Content}
     drawerPosition="right">
     <AppDrawer.Screen
       name="HomeStack"
       component={HomeStackScreen}
 
     />
+
   </AppDrawer.Navigator>
 );
 
@@ -34,7 +38,7 @@ const HomeStackScreen = () => (
       }}
       name="Home" component={HomeScreen} />
     <HomeStack.Screen
-     
+
       name="DatePicker" component={DatePicker} />
     <HomeStack.Screen
       name="TimePicker" component={TimePicker} />

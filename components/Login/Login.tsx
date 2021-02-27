@@ -4,25 +4,24 @@ import {
     Logo, SubmitBtn, SubmitBtnText,
     SubmitBtnContainer, Arrow, ErrorMsg,
 } from "./styled";
-import { useDispatch } from 'react-redux'
-import { Text, ScrollView, Alert } from "react-native";
+import { useDispatch, useSelector } from 'react-redux'
+import { Text, ScrollView, Platform, ActivityIndicator, View } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import KeyboardSpacer from "../KeyboardSpacer";
-import { signUp } from '../../store/action/auth'
+import { login, signUp } from '../../store/action/auth'
+import { isEmail } from "../helpers/Validator";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 export default () => {
-    const { control, handleSubmit, errors, getValues, register } = useForm({
+    const { control, handleSubmit, errors, getValues } = useForm({
         mode: "onChange"
 
     });
-    // const onSubmit = data => console.log(data);
+    const isLoading = useSelector((state) => state.auth.isLoading)
     const [scrollEnabled, setScrollEnabled] = useState(false);
     const dispatch = useDispatch()
     const onSubmit = (data) => {
-        dispatch(signUp(data.email, data.password))
-        
+        dispatch(login(data.email, data.password))
     }
-    // const x  = useSelector((state)=>state.auth)
-    // console.log(x)
     return (
         <Container>
             <ScrollView>
@@ -41,10 +40,10 @@ export default () => {
                             />
                         )}
                         name="email"
-                        rules={{ required: true }}
+                        rules={{ required: true, pattern: { value: isEmail, message: 'Email Is Not Valid' } }}
                         defaultValue=""
                     />
-                    {errors.email && <ErrorMsg>This is required.</ErrorMsg>}
+                    {errors.email && <ErrorMsg>{errors.email.message || 'Email is required'}</ErrorMsg>}
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
@@ -52,6 +51,7 @@ export default () => {
                                 onBlur={onBlur}
                                 onChangeText={value => onChange(value)}
                                 value={value}
+                                marginTop={Platform.OS == "ios" ? 32 : 8}
                                 // placehplaceholderTextAlign = 'left'
                                 placeholder="Enter Your password"
                             />
@@ -66,12 +66,19 @@ export default () => {
             </ScrollView>
             {getValues()?.email?.length > 0 &&
                 <SubmitBtn onPress={handleSubmit(onSubmit)}>
-                    <SubmitBtnContainer >
-                        <SubmitBtnText>
-                            Next
-                      </SubmitBtnText>
-                        <Arrow> --> </Arrow>
-                    </SubmitBtnContainer>
+                    {
+                        isLoading ?
+                            <View style={{justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                                <ActivityIndicator size='large' color={'white'} />
+                            </View>
+                            :
+                            <SubmitBtnContainer >
+                                <SubmitBtnText>
+                                    Next
+                                </SubmitBtnText>
+                                <Arrow> --> </Arrow>
+                            </SubmitBtnContainer>
+                    }
                 </SubmitBtn>
             }
         </Container>

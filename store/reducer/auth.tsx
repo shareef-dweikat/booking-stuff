@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import {
   LOG_IN,
+  LOG_IN_FAILED,
   LOG_IN_SUCCESS,
   LOG_OUT
 } from '../types';
@@ -15,10 +16,19 @@ export default (state = initialState, action: AnyAction) => {
     case LOG_IN_SUCCESS:
       return {
         ...initialState,
+        isLoading: false
+      };
+      case LOG_IN_FAILED:
+        alert(action.payload)
+      return {
+        ...initialState,
+        isLoading: false
+
       };
       case LOG_IN:
         return {
           ...initialState,
+          isLoading: true
         };
     case LOG_OUT:
       auth().signOut()
