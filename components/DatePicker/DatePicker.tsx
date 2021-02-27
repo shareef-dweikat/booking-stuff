@@ -14,9 +14,9 @@ import { DATE, TIME, I_WOULD_LIKE_TO_BOOK } from '../../constants/strings'
 import { saveDate } from "../../store/action/date";
 // import {useSelector} from 'react-redux'
 export default ({ navigation }) => {
-    const [markingType, setMarkingType] = useState('custom')
-    const [markedDates, setMarkedDates] = useState({})
-    const [selectedDate, setSelectedDate] = useState('2021-01-01')
+    const [markingType, setMarkingType] = useState<string>('custom')
+    const [markedDates, setMarkedDates] = useState<object>({})
+    const [selectedDate, setSelectedDate] = useState<string>('2021-01-01')
     const dispatch = useDispatch()
     const handlesetmarkingTypeChanged = useCallback((type: string) => {
         clear()
