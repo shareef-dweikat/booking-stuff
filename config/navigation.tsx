@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import HomeScreen from '../components/Home';
+import HomeScreen from '../components/Home/Home';
 import Login from '../components/Login/Login';
 import AuthLoading from '../components/Login/Login';
 import auth from '@react-native-firebase/auth';
 import { View } from 'react-native';
+import DatePicker from '../components/DatePicker/DatePicker';
+import TimePicker from '../components/TimePicker/TimePicker';
 
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
@@ -29,6 +31,17 @@ const HomeStackScreen = () => (
         header: () => null
       }}
       name="Home" component={HomeScreen} />
+    <HomeStack.Screen
+      options={{
+        header: () => null
+      }}
+      name="DatePicker" component={DatePicker} />
+    <HomeStack.Screen
+      options={{
+        header: () => null
+      }}
+      name="TimePicker" component={TimePicker} />
+
   </HomeStack.Navigator>
 );
 

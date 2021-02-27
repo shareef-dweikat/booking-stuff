@@ -69,7 +69,7 @@ export default () => {
                     <SubmitBtnContainer >
                         <SubmitBtnText>
                             Next
-                </SubmitBtnText>
+                      </SubmitBtnText>
                         <Arrow> --> </Arrow>
                     </SubmitBtnContainer>
                 </SubmitBtn>

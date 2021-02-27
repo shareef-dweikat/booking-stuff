@@ -57,7 +57,7 @@ export const SubmitBtnContainer = styled.View`
 `
 export const Arrow = styled.Text`
  color: ${Colors.white};
-
+  
 `
 
 
