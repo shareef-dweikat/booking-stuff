@@ -7,6 +7,7 @@ import Colors from '../../constants/Colors'
 export const Container = styled.View`
   background-color: ${Colors.white};
   flex: 1;
+  padding-top: 32px
 `
 export const BtnText = styled.Text`
   color: ${(porps: { active: boolean }) => porps.active ? Colors.blue : Colors.gray}

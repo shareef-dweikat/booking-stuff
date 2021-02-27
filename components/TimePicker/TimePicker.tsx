@@ -3,114 +3,53 @@ import {
     Container, BtnText,
     Btn, BtnRow, SubmitBtn,
     SubmitBtnContainer, SubmitBtnText,
+     TimeInput, InputRow
 
 } from "./styled";
-import { StatusBar, View } from 'react-native'
+import { Alert, StatusBar, View } from 'react-native'
 import moment from 'moment'
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import Colors from "../../constants/Colors";
 import { DATE, TIME, I_WOULD_LIKE_TO_BOOK } from '../../constants/strings'
-// import {useSelector} from 'react-redux'
+
 export default ({ navigation }) => {
+    
     const [markingType, setMarkingType] = useState('custom')
-    const [markedDates, setMarkedDates] = useState({})
-    const [selectedDate, setSelectedDate] = useState('2021-01-01')
 
-    const handlesetmarkingTypeChanged = useCallback((type: string) => {
-        clear()
-        setMarkingType(type)
-    }, [markingType, markedDates])
+    const [show, setShow] = useState(false)
 
-    const handleDayClicked = useCallback((date: string) => {
-        if (markingType == 'period')
-            handlePeriod(date)
-        else
-            handleCustom(date)
-    }, [markedDates])
+    const handleConfirm = useCallback((date: string) => {
+        
+        setShow(false)
+    }, [show])
 
-    const handleCustom = useCallback((date: string) => {
-        const temp = markedDates
-        for (let myDate in temp) {
-            temp[myDate] = { selected: false, color: 'green' }
-        }
-        temp[date?.dateString] = { selected: true, color: 'green' }
 
-        setMarkedDates({ ...temp })
-        setSelectedDate(date?.dateString)
-
-    }, [markedDates])
-
-    const handlePeriod = useCallback((date: string) => {
-        const temp = markedDates
-        if (!temp[date.dateString]?.selected)
-            temp[date?.dateString] = { selected: true, color: 'green' }
-        else
-            temp[date.dateString] = { selected: false }
-
-        let min = '2100-01-01'
-        let max = '1900-01-01'
-        Object.keys(temp).map((item) => {
-            const myDate = item
-            if (moment(myDate).isBefore(min)) {
-                min = myDate
-            }
-            if (moment(myDate).isAfter(max)) {
-                max = myDate
-            }
-        })
-
-        temp[moment(min).format('YYYY-MM-DD')] = { startingDay: true, color: 'green' }
-        temp[moment(max).format('YYYY-MM-DD')] = { endingDay: true, color: 'green' }
-
-        setMarkedDates({ ...temp })
-        const MONTH = moment(min).format('MMM')
-        const MIN_DAY = moment(min).format('DD')
-        const MAX_DAY = moment(max).format('DD')
-        const YEAR = moment(max).format('YYYY')
-
-        setSelectedDate(`${MONTH} ${MIN_DAY}-${MAX_DAY}, ${YEAR}`)
-    }, [markedDates])
-
-  
-    const clear = useCallback((date: string) => {
-        setMarkedDates({})
-    }, [markedDates])
 
     return (
         <Container>
             <StatusBar backgroundColor={Colors.white} />
+            <View style={{height: 300}}></View>
             <BtnRow>
-                <Btn onPress={() => handlesetmarkingTypeChanged('custom')}>
+                <Btn>
                     <BtnText active={markingType == 'custom'}>
                         Specific Date
                      </BtnText>
                 </Btn>
-                <Btn onPress={() => handlesetmarkingTypeChanged('period')}>
+                <Btn>
                     <BtnText active={markingType == 'period'}>
                         Range
                     </BtnText>
                 </Btn>
             </BtnRow>
-         
-
-            {/* <Btn marginTop={16} onPress={clear}>
-                <BtnText>
-                    Reset
-                </BtnText>
-            </Btn> */}
-            <SubmitBtn>
-                <SubmitBtnContainer >
-                    <SubmitBtnText>
-                        {
-                            markingType == 'custom' ?
-                                moment(selectedDate).format('MMM DD, YYYY')
-                                :
-                                selectedDate
-                        }
-                    </SubmitBtnText>
-                </SubmitBtnContainer>
-            </SubmitBtn>
+            <DateTimePickerModal
+                isVisible={show}
+                mode={'time'}
+                is24Hour={true}
+                // date={new Date(date)}
+                 onConfirm={handleConfirm}
+                 onCancel={()=>setShow(false)}
+            />
         </Container>
     )
 }

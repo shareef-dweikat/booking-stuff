@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, TextInput } from "react-native";
 
 import styled from 'styled-components/native'
 import Colors from '../../constants/Colors'
@@ -7,6 +7,11 @@ import Colors from '../../constants/Colors'
 export const Container = styled.View`
   background-color: ${Colors.white};
   flex: 1;
+`
+
+export const TimeInput = styled.TextInput`
+  color: ${Colors.blue};
+  width: 200px
 `
 export const BtnText = styled.Text`
   color: ${(porps: { active: boolean }) => porps.active ? Colors.blue : Colors.gray}
@@ -43,4 +48,7 @@ export const SubmitBtnText = styled.Text`
 `
 export const SubmitBtnContainer = styled.View`
 
+`
+export const InputRow = styled.TouchableOpacity`
+ flex-direction: row
 `

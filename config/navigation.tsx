@@ -9,6 +9,7 @@ import auth from '@react-native-firebase/auth';
 import { View } from 'react-native';
 import DatePicker from '../components/DatePicker/DatePicker';
 import TimePicker from '../components/TimePicker/TimePicker';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
@@ -32,14 +33,9 @@ const HomeStackScreen = () => (
       }}
       name="Home" component={HomeScreen} />
     <HomeStack.Screen
-      options={{
-        header: () => null
-      }}
+     
       name="DatePicker" component={DatePicker} />
     <HomeStack.Screen
-      options={{
-        header: () => null
-      }}
       name="TimePicker" component={TimePicker} />
 
   </HomeStack.Navigator>
@@ -73,14 +69,16 @@ export default () => {
     return subscriber;
   }, []);
   return (
-    <NavigationContainer>
-      {initializing ? (
-        <AuthLoading />
-      ) : user ? (
-        <AppDrawerScreen />
-      ) : (
-            <AuthStackScreen />
-          )}
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        {initializing ? (
+          <AuthLoading />
+        ) : user ? (
+          <AppDrawerScreen />
+        ) : (
+              <AuthStackScreen />
+            )}
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };

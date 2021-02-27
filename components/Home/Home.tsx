@@ -5,13 +5,9 @@ import {
 } from "./styled";
 import { StatusBar, View } from 'react-native'
 import database from '@react-native-firebase/database';
-import auth from '@react-native-firebase/auth';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-
 import Colors from "../../constants/Colors";
 import { DATE, TIME, I_WOULD_LIKE_TO_BOOK } from '../../constants/strings'
-// import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 export default ({ navigation }) => {
     console.log(navigation, "navigationnnn")
     useEffect(() => {
@@ -23,15 +19,15 @@ export default ({ navigation }) => {
                 console.log('User data: ', snapshot.val());
             });
     }, [])
-    // const x  = useSelector((state)=>state.auth)
-    // console.log(x)
+     const date  = useSelector((state)=>state.date.date)
+    console.log(date, "date from use selector")
     return (
         <Container>
             <StatusBar backgroundColor={Colors.blue} />
             <Header navigation={navigation} />
             <Content>
                 <Label>
-                    {I_WOULD_LIKE_TO_BOOK}
+                    {I_WOULD_LIKE_TO_BOOK} {date}
                 </Label>
             </Content>
             <BtnsRow>

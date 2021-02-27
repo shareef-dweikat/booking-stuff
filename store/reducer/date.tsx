@@ -1,35 +1,26 @@
 import { AnyAction } from 'redux';
 import {
-  LOG_IN,
-  LOG_IN_SUCCESS,
-  LOG_OUT
+  UPDATE_DATE
 } from '../types';
 import auth from '@react-native-firebase/auth';
 
 const initialState = {
- 
+  date: null,
 };
 
 export default (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case LOG_IN_SUCCESS:
+    case UPDATE_DATE:
+      console.log(action.payload, "adsdad")
+      alert('Date Saved')
       return {
         ...initialState,
-      };
-      case LOG_IN:
-        return {
-          ...initialState,
-        };
-    case LOG_OUT:
-      auth().signOut()
-      return {
-        ...initialState,
+        date: action.payload
       };
     default:
       return state;
   }
 };
-
 export interface Interface {
-
+  date: null,
 }
