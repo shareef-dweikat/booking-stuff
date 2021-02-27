@@ -10,7 +10,8 @@ import { View } from 'react-native';
 import DatePicker from '../components/DatePicker/DatePicker';
 import TimePicker from '../components/TimePicker/TimePicker';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-
+import {useDispatch} from 'react-redux'
+import { fetchDate } from '../store/action/date';
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
   <AppDrawer.Navigator
@@ -56,10 +57,11 @@ const AuthStackScreen = () => (
 export default () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
-
+  const dispatch = useDispatch()
   // Handle user state changes
   function onAuthStateChanged(user) {
     console.log(user, "usssss")
+    dispatch(fetchDate())
     setUser(user);
     if (initializing) setInitializing(false);
   }
