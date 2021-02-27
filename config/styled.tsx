@@ -3,9 +3,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native'
 import Colors from '../constants/Colors'
-import { useDispatch } from 'react-redux'
 import { LOG_OUT } from '../store/types';
-
 
 export const Label = styled.Text`
   color: ${Colors.black};

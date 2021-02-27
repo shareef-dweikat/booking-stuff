@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
     Header, Container, Label, Content,
     Btn, BtnText, BtnsRow
 } from "./styled";
-import { ActivityIndicator, StatusBar, View } from 'react-native'
+import { ActivityIndicator, StatusBar } from 'react-native'
 import Colors from "../../constants/Colors";
 import { DATE, TIME, I_WOULD_LIKE_TO_BOOK } from '../../constants/strings'
 import { useSelector } from 'react-redux'

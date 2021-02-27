@@ -1,16 +1,16 @@
 import styled from 'styled-components/native'
-import { Text, TextInput, Dimensions, TouchableOpacity } from 'react-native'
+import {  Dimensions } from 'react-native'
 import Colors from '../../constants/Colors'
 
 const Height = Dimensions.get('window').height
 export const Label = styled.Text`
     color: ${Colors.black};
     font-size: 22px;
-    margin-top: ${(props) => props.marginTop ? props.marginTop : 0}px
+    margin-top: ${(props: {marginTop: number}) => props.marginTop ? props.marginTop : 0}px
 `
 export const LoginInput = styled.TextInput`
     width: 100%;
-    margin-top: ${(props) => props.marginTop ? props.marginTop : 0}px
+    margin-top: ${(props: {marginTop: number}) => props.marginTop ? props.marginTop : 0}px
 `
 export const Content = styled.View`
   align-items: center;
