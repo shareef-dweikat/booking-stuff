@@ -77,26 +77,26 @@ export default () => {
                     onToggle={(visible) => setScrollEnabled(visible)}
                 />
             </ScrollView>
-            {getValues()?.email?.length > 0 &&
-                <SubmitBtn onPress={handleSubmit(onSubmit)}>
-                    {
-                        isLoading ?
-                            <Loader>
-                                <ActivityIndicator
-                                    size='large'
-                                    color={'white'}
-                                />
-                            </Loader>
-                            :
-                            <SubmitBtnContainer >
-                                <SubmitBtnText>
-                                    {NEXT}
-                                </SubmitBtnText>
-                                <Arrow> {ARROW} </Arrow>
-                            </SubmitBtnContainer>
-                    }
-                </SubmitBtn>
-            }
+                {getValues()?.email?.length > 0 &&
+                    <SubmitBtn onPress={handleSubmit(onSubmit)}>
+                        {
+                            isLoading ?
+                                <Loader>
+                                    <ActivityIndicator
+                                        size='large'
+                                        color={'white'}
+                                    />
+                                </Loader>
+                                :
+                                <SubmitBtnContainer >
+                                    <SubmitBtnText>
+                                        {NEXT}
+                                    </SubmitBtnText>
+                                    <Arrow> {ARROW} </Arrow>
+                                </SubmitBtnContainer>
+                        }
+                    </SubmitBtn>
+                }
         </Container>
     )
 }
