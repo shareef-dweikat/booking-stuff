@@ -38,13 +38,13 @@ export function login(email: string, password: string) {
         });
         auth().signInWithEmailAndPassword(email, password)
             .then((data) => {
-                console.log(data, "datadata")
+                console.log(data, "signInWithEmailAndPassword")
                 dispatch({
                     type: LOG_IN_SUCCESS,
                 });
             })
             .catch((err) => {
-                console.log(err.code, "dadasdsd")
+                console.log(err.code, "signInWithEmailAndPassword_error")
                 if (err.code == "auth/user-not-found") {
                     dispatch(signUp(email, password))
                 } else

@@ -7,5 +7,4 @@ export const FETCH_DATE= "FETCH_DATE"
 export const FETCH_DATE_SUCCESS= "FETCH_DATE_SUCCESS"
 export const UPDATE_DATE_SUCCESS= "UPDATE_DATE_SUCCESS"
 
-
 export const LOGOUT= "LOGOUT"

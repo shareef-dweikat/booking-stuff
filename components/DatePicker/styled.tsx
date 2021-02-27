@@ -21,7 +21,7 @@ export const BtnRow = styled.View`
 
 export const Btn = styled.TouchableOpacity`
   align-self: center;
-  margin-top: ${(props) => props.marginTop ? props.marginTop : 0};
+  margin-top: ${(props) => props.marginTop ? props.marginTop : 0}px;
 
 `
 

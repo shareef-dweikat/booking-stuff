@@ -13,12 +13,16 @@ export const LoginInput = styled.TextInput`
     margin-top: ${(props) => props.marginTop ? props.marginTop : 0}px
 `
 export const Content = styled.View`
- 
   align-items: center;
   padding: 16px;
   padding-top: ${Height * 0.1}px;
 `
+export const Loader = styled.View`
+  justify-content: center;
+ align-items: center;
+  width: 100%;
 
+`
 export const Container = styled.View`
   flex: 1;
   background-color: ${Colors.white};

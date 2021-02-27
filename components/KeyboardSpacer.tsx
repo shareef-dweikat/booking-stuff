@@ -18,7 +18,7 @@ export default ({ style, onToggle = () => null }) => {
         return;
       }
 
-      const screenHeight = Dimensions.get('window').height;
+      const screenHeight = Dimensions.get('window').height ;
       const newKeyboardSpace = screenHeight - event.endCoordinates.screenY;
       setKeyboardSpace(newKeyboardSpace);
       onToggle(true, newKeyboardSpace);

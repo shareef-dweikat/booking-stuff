@@ -6,27 +6,34 @@ import HomeScreen from '../components/Home/Home';
 import Login from '../components/Login/Login';
 import AuthLoading from '../components/Login/Login';
 import auth from '@react-native-firebase/auth';
-import { TouchableOpacity, View } from 'react-native';
 import DatePicker from '../components/DatePicker/DatePicker';
 import TimePicker from '../components/TimePicker/TimePicker';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux'
 import { fetchDate } from '../store/action/date';
-import { Label, Container, Content } from './styled'
+import { Container, Content, Label } from './styled'
+import { TouchableOpacity } from 'react-native';
 
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
-  <AppDrawer.Navigator
-    drawerContent={Content}
-    drawerPosition="right">
-    <AppDrawer.Screen
-      name="HomeStack"
-      component={HomeStackScreen}
+    <AppDrawer.Navigator
+      drawerContent={() =>
+        <Container>
+          <TouchableOpacity onPress={() => auth().signOut()}>
+            <Label>Sign out</Label>
+          </TouchableOpacity>
+        </Container>
+      }
+      drawerPosition="right">
+      <AppDrawer.Screen
+        name="HomeStack"
+        component={HomeStackScreen}
 
-    />
+      />
 
-  </AppDrawer.Navigator>
-);
+    </AppDrawer.Navigator>
+  )
+
 
 
 const HomeStack = createStackNavigator();
@@ -64,7 +71,6 @@ export default () => {
   const dispatch = useDispatch()
   // Handle user state changes
   function onAuthStateChanged(user) {
-    console.log(user, "usssss")
     dispatch(fetchDate())
     setUser(user);
     if (initializing) setInitializing(false);

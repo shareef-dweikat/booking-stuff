@@ -5,7 +5,6 @@ import {
   UPDATE_DATE,
   UPDATE_DATE_SUCCESS
 } from '../types';
-import auth from '@react-native-firebase/auth';
 
 const initialState = {
   date: null,

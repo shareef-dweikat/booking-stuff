@@ -16,8 +16,7 @@ export const Container = styled.View`
   justifyContent: center;
   alignItems: center;
 `
-export const Content = () => {
-  const dispatch = useDispatch()
+export const Content = ({dispatch}) => {
   return (
     <Container>
       <TouchableOpacity onPress={() => dispatch({type: LOG_OUT})}>

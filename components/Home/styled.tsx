@@ -29,7 +29,7 @@ export const Label = styled.Text`
 `
 export const Content = styled.View`
  padding: 16px;
- padding-top: ${Platform.OS == 'ios' ? 0 : 16}
+ padding-top: ${Platform.OS == 'ios' ? 0 : 16}px;
 `
 export const Btn = styled.TouchableOpacity`
  border-radius: 30px;
