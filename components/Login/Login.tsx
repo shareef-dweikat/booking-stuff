@@ -68,7 +68,7 @@ export default () => {
                                 onChangeText={value => onChange(value)}
                                 value={value}
                                 marginTop={Platform.OS == "ios" ? 32 : 8}
-                                // placehplaceholderTextAlign = 'left'
+                                secureTextEntry={true}
                                 placeholder={ENTER_YOUR_PASSWORD}
                             />
                         )}

@@ -25,7 +25,7 @@ export const Container = styled.View`
 `
 export const Label = styled.Text`
   color: ${Colors.white};
-  font-size: 22px
+  font-size: 18px
 `
 export const Content = styled.View`
  padding: 16px;

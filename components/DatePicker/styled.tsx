@@ -20,19 +20,17 @@ export const BtnRow = styled.View`
 export const Btn = styled.TouchableOpacity`
   align-self: center;
   margin-top: ${(props: {marginTop: number}) => props.marginTop ? props.marginTop : 0}px;
-
 `
-
 export const SubmitBtn = styled.TouchableOpacity`
  width: 100%;
  height: 50px;
  background-color: ${Colors.black};
  position: absolute;
  bottom: 0;
-  justify-content: space-around;
+ justify-content: space-around;
  padding-horizontal: 16px;
-flex-direction: row
-align-items: center
+ flex-direction: row
+ align-items: center
 `
 export const SubmitBtnText = styled.Text`
  color: ${Colors.white};
