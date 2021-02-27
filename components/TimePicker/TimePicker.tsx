@@ -1,31 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
     Container, BtnText,
-    Btn, BtnRow, SubmitBtn,
-    SubmitBtnContainer, SubmitBtnText,
-     TimeInput, InputRow
-
+    Btn, BtnRow, 
 } from "./styled";
-import { Alert, StatusBar, View } from 'react-native'
-import moment from 'moment'
+import {  StatusBar, View } from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
 import Colors from "../../constants/Colors";
-import { DATE, TIME, I_WOULD_LIKE_TO_BOOK } from '../../constants/strings'
-
 export default ({ navigation }) => {
     
     const [markingType, setMarkingType] = useState('custom')
-
     const [show, setShow] = useState(false)
-
     const handleConfirm = useCallback((date: string) => {
-        
         setShow(false)
     }, [show])
-
-
-
+    
     return (
         <Container>
             <StatusBar backgroundColor={Colors.white} />
@@ -53,4 +41,3 @@ export default ({ navigation }) => {
         </Container>
     )
 }
-

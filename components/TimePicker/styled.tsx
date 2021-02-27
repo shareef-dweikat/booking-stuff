@@ -1,6 +1,4 @@
 import React from "react";
-import { TouchableOpacity, TextInput } from "react-native";
-
 import styled from 'styled-components/native'
 import Colors from '../../constants/Colors'
 
@@ -8,7 +6,6 @@ export const Container = styled.View`
   background-color: ${Colors.white};
   flex: 1;
 `
-
 export const TimeInput = styled.TextInput`
   color: ${Colors.blue};
   width: 200px
@@ -22,13 +19,10 @@ export const BtnRow = styled.View`
   flex-direction: row;
   justify-content: space-around
 `
-
 export const Btn = styled.TouchableOpacity`
   align-self: center;
-  margin-top: ${(props) => props.marginTop ? props.marginTop : 0};
-
+  margin-top: ${(props: {marginTop: number}) => props.marginTop ? props.marginTop : 0};
 `
-
 export const SubmitBtn = styled.TouchableOpacity`
  width: 100%;
  height: 50px;
@@ -39,7 +33,6 @@ export const SubmitBtn = styled.TouchableOpacity`
  padding-horizontal: 16px;
 flex-direction: row
 align-items: center
-
 `
 export const SubmitBtnText = styled.Text`
  color: ${Colors.white};

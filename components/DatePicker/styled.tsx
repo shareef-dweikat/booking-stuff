@@ -1,6 +1,4 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-
 import styled from 'styled-components/native'
 import Colors from '../../constants/Colors'
 
@@ -21,7 +19,7 @@ export const BtnRow = styled.View`
 
 export const Btn = styled.TouchableOpacity`
   align-self: center;
-  margin-top: ${(props) => props.marginTop ? props.marginTop : 0}px;
+  margin-top: ${(props: {marginTop: number}) => props.marginTop ? props.marginTop : 0}px;
 
 `
 
@@ -35,7 +33,6 @@ export const SubmitBtn = styled.TouchableOpacity`
  padding-horizontal: 16px;
 flex-direction: row
 align-items: center
-
 `
 export const SubmitBtnText = styled.Text`
  color: ${Colors.white};
