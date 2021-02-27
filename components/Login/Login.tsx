@@ -19,13 +19,18 @@ import {
     NEXT,
     THIS_IS_REQUIRED
 } from "../../constants/strings";
+
+interface Interface {
+    auth: {
+        isLoading: boolean
+    }
+}
 export default () => {
     const { control, handleSubmit, errors, getValues } = useForm({
         mode: "onChange"
-
     });
-    const isLoading = useSelector((state) => state.auth.isLoading)
-    const [scrollEnabled, setScrollEnabled] = useState(false);
+    const isLoading = useSelector<boolean>((state:Interface) => state.auth.isLoading)
+    const [scrollEnabled, setScrollEnabled] = useState<boolean>(false);
     const dispatch = useDispatch()
     const onSubmit = (data) => {
         dispatch(login(data.email, data.password))

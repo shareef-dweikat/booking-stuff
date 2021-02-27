@@ -8,27 +8,34 @@ import Colors from "../../constants/Colors";
 import { DATE, TIME, I_WOULD_LIKE_TO_BOOK } from '../../constants/strings'
 import { useSelector } from 'react-redux'
 
-export interface Interface {
-    state: object,
+export interface InterfaceDate {
+    date: {
+        date: string
+    },
 }
 
+export interface InterfaceLoading {
+    date: {
+        isLoading: boolean
+    },
+}
 export default ({ navigation }) => {
-    const date = useSelector((state: Interface) => state.date.date)
-    const isLoading = useSelector((state: Interface) => state.date.isLoading)
+    const date = useSelector((state: InterfaceDate) => state.date.date)
+    const isLoading = useSelector((state: InterfaceLoading) => state.date.isLoading)
     return (
         <Container>
             <StatusBar backgroundColor={Colors.blue} />
             <Header navigation={navigation} />
             <Content>
-                { isLoading ?
-                        <ActivityIndicator
-                            size='large'
-                            color='black'
-                        />
-                        :
-                        <Label>
-                            {I_WOULD_LIKE_TO_BOOK} {date}
-                        </Label>
+                {isLoading ?
+                    <ActivityIndicator
+                        size='large'
+                        color='black'
+                    />
+                    :
+                    <Label>
+                        {I_WOULD_LIKE_TO_BOOK} {date}
+                    </Label>
                 }
             </Content>
             <BtnsRow>

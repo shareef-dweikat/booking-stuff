@@ -45,5 +45,6 @@ export default (state = initialState, action: AnyAction) => {
   }
 };
 export interface Interface {
-  date: null,
+  date: string,
+  isLoading: boolean
 }

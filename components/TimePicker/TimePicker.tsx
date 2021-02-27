@@ -8,12 +8,12 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Colors from "../../constants/Colors";
 export default ({ navigation }) => {
     
-    const [markingType, setMarkingType] = useState('custom')
-    const [show, setShow] = useState(false)
+    const [markingType, setMarkingType] = useState<string>('custom')
+    const [show, setShow] = useState<boolean>(false)
     const handleConfirm = useCallback((date: string) => {
         setShow(false)
     }, [show])
-    
+
     return (
         <Container>
             <StatusBar backgroundColor={Colors.white} />
