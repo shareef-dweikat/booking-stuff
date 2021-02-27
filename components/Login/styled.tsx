@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import {  Dimensions } from 'react-native'
+import {  Dimensions, Platform } from 'react-native'
 import Colors from '../../constants/Colors'
 
 const Height = Dimensions.get('window').height
@@ -35,7 +35,7 @@ export const Logo = styled.View`
 `
 export const SubmitBtn = styled.TouchableOpacity`
  width: 100%;
- height: 50px;
+ height: ${Platform.OS == 'ios'?70:50}px;
  background-color: ${Colors.black};
  position: absolute;
  bottom: 0;
@@ -43,7 +43,8 @@ export const SubmitBtn = styled.TouchableOpacity`
  padding-horizontal: 16px;
  flex: 1;
  align-items: center;
-justify-content:flex-end
+  justify-content:flex-end;
+  padding-bottom: ${Platform.OS == 'ios'?16:0}px;
 `
 export const SubmitBtnText = styled.Text`
  color: ${Colors.white};
